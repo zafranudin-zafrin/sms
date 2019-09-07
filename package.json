@@ -1,0 +1,34 @@
+{
+  "name": "@carsome/sms",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nestjsplus/nestjs-package-starter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nestjsplus/nestjs-package-starter/issues"
+  },
+  "homepage": "https://github.com/nestjsplus/nestjs-package-starter#readme",
+  "devDependencies": {
+    "@nestjs/common": "^6.6.7",
+    "@types/node": "^12.7.4",
+    "husky": "^3.0.5",
+    "prettier": "^1.18.2",
+    "rxjs": "^6.5.3",
+    "tslint": "^5.19.0",
+    "typescript": "^3.6.2"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^6.0.0"
+  }
+}

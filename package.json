@@ -1,9 +1,12 @@
 {
-  "name": "@carsome/sms",
+  "name": "@zafranudin.zafrin/sms",
   "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "np": {
+    "yarn": false
+  },
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"

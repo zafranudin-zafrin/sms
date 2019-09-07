@@ -1,3 +1,2 @@
-export * from './http.module';
-export * from './http.service';
-export * from './interfaces';
+export * from './sms.module';
+export * from './sms.service';

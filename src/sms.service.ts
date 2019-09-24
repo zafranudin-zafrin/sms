@@ -9,13 +9,11 @@ export class SmsService {
 	sms: any;
 
 	constructor(
-		@Inject('SMS_DIALECT') private readonly SMS_DIALECT: any,
 		@Inject('SMS_OPTIONS') private readonly smsOptions: SmsOptions,
 		private infobip: InfobipSmsService,
 		private twilio: TwilioSmsService,
 		private mock: LocalSmsService,
 	) {
-		this.sms = this.SMS_DIALECT;
 		switch (smsOptions.dialect) {
 			case 'infobip':
 				this.sms = infobip;

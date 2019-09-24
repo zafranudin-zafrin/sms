@@ -42,20 +42,6 @@ export class SmsModule {
 					provide: 'SMS_OPTIONS',
 					useValue: options,
 				},
-				{
-					provide: 'SMS_DIALECT',
-					useFactory: (
-						infobip: InfobipSmsService,
-						twilio: TwilioSmsService,
-						mock: LocalSmsService) => {
-						return {
-							infobip,
-							twilio,
-							mock,
-						};
-					},
-					inject: [InfobipSmsService, TwilioSmsService, LocalSmsService],
-				},
 			],
 			exports: [
 				SmsService,

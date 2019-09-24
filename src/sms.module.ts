@@ -1,4 +1,4 @@
-import {DynamicModule, Module} from '@nestjs/common';
+import {DynamicModule, HttpModule, Module} from '@nestjs/common';
 import {SmsService} from './sms.service';
 import {SmsOptions} from './interfaces/sms.options';
 import {InfobipSmsService} from './dialect/infobip-sms/infobip-sms.service';
@@ -7,6 +7,9 @@ import {LocalSmsService} from './dialect/local-sms/local-sms.service';
 import {BaseSmsService} from './dialect/base-sms.service';
 
 @Module({
+	imports: [
+		HttpModule,
+	],
 	providers: [
 		SmsService,
 		TwilioSmsService,

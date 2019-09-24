@@ -5,7 +5,7 @@ import {TwilioSmsService} from './dialect/twilio-sms/twilio-sms.service';
 import {LocalSmsService} from './dialect/local-sms/local-sms.service';
 
 @Injectable()
-export class SmsService {
+export class CSmsService {
 	sms: any;
 
 	constructor(

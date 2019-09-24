@@ -1,4 +1,4 @@
-import {DynamicModule, HttpModule, Module} from '@nestjs/common';
+import {DynamicModule, HttpModule, HttpService, Module} from '@nestjs/common';
 import {CSmsService} from './c-sms.service';
 import {SmsOptions} from './interfaces/sms.options';
 import {InfobipSmsService} from './dialect/infobip-sms/infobip-sms.service';
@@ -19,10 +19,6 @@ import {BaseSmsService} from './dialect/base-sms.service';
 	],
 	exports: [
 		CSmsService,
-		TwilioSmsService,
-		InfobipSmsService,
-		LocalSmsService,
-		BaseSmsService,
 	],
 })
 export class CSmsModule {
@@ -33,25 +29,24 @@ export class CSmsModule {
 				HttpModule,
 			],
 			providers: [
-				CSmsService,
-				TwilioSmsService,
-				InfobipSmsService,
-				LocalSmsService,
-				BaseSmsService,
 				{
 					provide: 'SMS_OPTIONS',
 					useValue: options,
 				},
-			],
-			exports: [
-				CSmsService,
-				TwilioSmsService,
-				InfobipSmsService,
-				LocalSmsService,
-				BaseSmsService,
 				{
-					provide: 'SMS_OPTIONS',
-					useValue: options,
+					provide: 'SMS_DIALECT',
+					useFactory: (
+						httpService: HttpService) => {
+						switch (options.dialect) {
+							case 'infobip':
+								return new InfobipSmsService(httpService, options);
+							case 'twilio':
+								return new TwilioSmsService();
+							default:
+								return new LocalSmsService(httpService, options);
+						}
+					},
+					inject: [HttpService],
 				},
 			],
 		};

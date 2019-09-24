@@ -32,13 +32,16 @@
     "jest": "^24.9.0",
     "nestjs": "0.0.1",
     "prettier": "^1.18.2",
+    "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.3",
     "tslint": "^5.19.0",
     "typescript": "^3.6.2"
   },
   "peerDependencies": {
     "@nestjs/common": "^6.0.0",
-    "@nestjs/core": "^6.0.0"
+    "@nestjs/core": "^6.0.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.3.3"
   },
   "dependencies": {}
 }

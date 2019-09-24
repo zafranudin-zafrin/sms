@@ -1,8 +1,8 @@
 import {HttpService, Inject, Injectable} from '@nestjs/common';
-import {SmsBody, SmsInterface, SmsOptions} from '../interfaces';
+import {SmsBody, SmsOptions} from '../interfaces';
 
 @Injectable()
-export class BaseSmsService implements SmsInterface {
+export class BaseSmsService {
 	protected _headers = {
 		'Content-Type': 'application/json',
 	};
@@ -58,9 +58,5 @@ export class BaseSmsService implements SmsInterface {
 
 	set text(message) {
 		this._body.text = message;
-	}
-
-	send(): Promise<any> {
-		throw new Error('Method not implemented.');
 	}
 }

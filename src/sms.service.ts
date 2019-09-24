@@ -11,6 +11,17 @@ export class SmsService {
 		@Inject('SMS_OPTIONS') private readonly smsOptions: SmsOptions,
 	) {
 		this.sms = this.SMS_DIALECT;
+		switch (smsOptions.dialect) {
+			case 'infobip':
+				this.sms = SMS_DIALECT.infobip;
+				break;
+			case 'twilio':
+				this.sms = SMS_DIALECT.twilio;
+				break;
+			default:
+				this.sms = SMS_DIALECT.mock;
+				break;
+		}
 
 	}
 

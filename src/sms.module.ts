@@ -30,14 +30,11 @@ export class SmsModule {
 						infobip: InfobipSmsService,
 						twilio: TwilioSmsService,
 						mock: LocalSmsService) => {
-						switch (options.dialect) {
-							case 'infobip':
-								return infobip;
-							case 'twilio':
-								return twilio;
-							default:
-								return mock;
-						}
+						return {
+							infobip,
+							twilio,
+							mock,
+						};
 					},
 					inject: [InfobipSmsService, TwilioSmsService, LocalSmsService],
 				},

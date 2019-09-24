@@ -42,7 +42,7 @@ export class SmsModule {
 					inject: [InfobipSmsService, TwilioSmsService, LocalSmsService],
 				},
 			],
-			exports: [],
+			exports: [SmsService],
 		};
 	}
 }

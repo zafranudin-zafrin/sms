@@ -1,6 +1,5 @@
 import {HttpService, Inject, Injectable} from '@nestjs/common';
-import {SmsBody, SmsInterface} from '../interfaces/sms.interface';
-import {SmsOptions} from '../interfaces/sms.options';
+import {SmsBody, SmsInterface, SmsOptions} from '../interfaces';
 
 @Injectable()
 export class BaseSmsService implements SmsInterface {

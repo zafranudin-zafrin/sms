@@ -49,6 +49,10 @@ export class SmsModule {
 				InfobipSmsService,
 				LocalSmsService,
 				BaseSmsService,
+				{
+					provide: 'SMS_OPTIONS',
+					useValue: options,
+				},
 			],
 		};
 	}

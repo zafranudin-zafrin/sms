@@ -6,23 +6,20 @@ import {TwilioSmsService} from './dialect/twilio-sms/twilio-sms.service';
 import {LocalSmsService} from './dialect/local-sms/local-sms.service';
 import {BaseSmsService} from './dialect/base-sms.service';
 
-@Module({
-	imports: [
-		HttpModule,
-	],
-	providers: [
-		SmsService,
-		TwilioSmsService,
-		InfobipSmsService,
-		LocalSmsService,
-		BaseSmsService,
-	],
-})
+@Module({})
 export class SmsModule {
 	static register(options: SmsOptions): DynamicModule {
 		return {
 			module: SmsModule,
+			imports: [
+				HttpModule,
+			],
 			providers: [
+				SmsService,
+				TwilioSmsService,
+				InfobipSmsService,
+				LocalSmsService,
+				BaseSmsService,
 				{
 					provide: 'SMS_OPTIONS',
 					useValue: options,
@@ -45,7 +42,13 @@ export class SmsModule {
 					inject: [InfobipSmsService, TwilioSmsService, LocalSmsService],
 				},
 			],
-			exports: [SmsService],
+			exports: [
+				SmsService,
+				TwilioSmsService,
+				InfobipSmsService,
+				LocalSmsService,
+				BaseSmsService,
+			],
 		};
 	}
 }

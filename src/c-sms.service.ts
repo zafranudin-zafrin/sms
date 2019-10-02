@@ -1,9 +1,12 @@
 import {Inject, Injectable} from '@nestjs/common';
 import {SmsOptions} from './interfaces/sms.options';
+import {InfobipSmsService} from './dialect/infobip-sms/infobip-sms.service';
+import {LocalSmsService} from './dialect/local-sms/local-sms.service';
+import {TwilioSmsService} from './dialect/twilio-sms/twilio-sms.service';
 
 @Injectable()
 export class CSmsService {
-	sms: any;
+	sms: InfobipSmsService | LocalSmsService | TwilioSmsService;
 
 	constructor(
 		@Inject('SMS_DIALECT') private readonly SMS_DIALECT: any,

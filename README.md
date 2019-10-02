@@ -1,5 +1,7 @@
 # Nest | Carsome Sms
 
+[![CircleCI](https://circleci.com/gh/zafranudin-zafrin/sms/tree/master.svg?style=shield)](https://circleci.com/gh/zafranudin-zafrin/sms/tree/master)
+
 A library for Nest that allow you to send simple SMS to preferred recipient, using your
 provider of choice. Supported by Carsome.
 

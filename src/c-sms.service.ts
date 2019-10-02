@@ -12,6 +12,17 @@ export class CSmsService {
 		this.sms = SMS_DIALECT;
 	}
 
+	draft(message: string, mobileNo: string) {
+		this.sms.from = this.smsOptions.sender;
+		this.sms.text = message;
+		this.sms.to = mobileNo;
+		return this;
+	}
+
+	async submit() {
+		return await this.sms.send();
+	}
+
 	async send(message: string, mobileNo: string): Promise<any> {
 		this.sms.from = this.smsOptions.sender;
 		this.sms.text = message;

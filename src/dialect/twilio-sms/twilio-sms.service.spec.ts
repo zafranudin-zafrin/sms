@@ -1,12 +1,18 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { TwilioSmsService } from './twilio-sms.service';
+import {Test, TestingModule} from '@nestjs/testing';
+import {HttpModule} from '@nestjs/common';
+import {TwilioSmsService} from './twilio-sms.service';
 
-describe('TwilioSmsService', () => {
+describe('LoansService', () => {
 	let service: TwilioSmsService;
 
 	beforeEach(async () => {
 		const module: TestingModule = await Test.createTestingModule({
-			providers: [TwilioSmsService],
+			imports: [
+				HttpModule,
+			],
+			providers: [
+				TwilioSmsService,
+			],
 		}).compile();
 
 		service = module.get<TwilioSmsService>(TwilioSmsService);

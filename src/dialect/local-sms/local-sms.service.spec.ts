@@ -1,12 +1,25 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { LocalSmsService } from './local-sms.service';
+import {Test, TestingModule} from '@nestjs/testing';
+import {HttpModule} from '@nestjs/common';
+import {LocalSmsService} from './local-sms.service';
 
-describe('LocalSmsService', () => {
+describe('LoansService', () => {
 	let service: LocalSmsService;
 
 	beforeEach(async () => {
 		const module: TestingModule = await Test.createTestingModule({
-			providers: [LocalSmsService],
+			imports: [
+				HttpModule,
+			],
+			providers: [
+				LocalSmsService,
+				{
+					provide: 'SMS_OPTIONS',
+					useValue: {
+						dialect: 'infobip',
+						sender: 'test',
+					},
+				},
+			],
 		}).compile();
 
 		service = module.get<LocalSmsService>(LocalSmsService);

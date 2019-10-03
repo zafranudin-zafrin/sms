@@ -6,4 +6,6 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: npx jest
+      - run: npx jest --coverage --coverageReporters=text-lcov | npx coveralls
+      - store_artifacts:
+          path: coverage

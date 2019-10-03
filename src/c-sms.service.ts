@@ -31,7 +31,8 @@ export class CSmsService {
 		this.sms.text = message;
 		this.sms.to = mobileNo;
 
-		return await this.sms.send();
+		await this.sms.send();
+		return this.getResponse();
 	}
 
 	getBody() {

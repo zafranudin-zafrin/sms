@@ -2,6 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/zafranudin-zafrin/sms/tree/master.svg?style=shield)](https://circleci.com/gh/zafranudin-zafrin/sms/tree/master)
 [![CircleCI](https://img.shields.io/badge/lint-standard-brightgreen?style=flat-square)](https://img.shields.io/badge/lint-standard-brightgreen?style=flat-square)
+[![Coverage Status](https://coveralls.io/repos/github/zafranudin-zafrin/sms/badge.svg?branch=master)](https://coveralls.io/github/zafranudin-zafrin/sms?branch=master)
 
 A library for Nest that allow you to send simple SMS to preferred recipient, using your
 provider of choice. Supported by Carsome.

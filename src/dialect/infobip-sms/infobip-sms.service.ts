@@ -4,22 +4,32 @@ import {BaseSmsService} from '../base-sms.service';
 
 @Injectable()
 export class InfobipSmsService extends BaseSmsService implements SmsInterface {
-
 	protected _headers = {
 		'Content-Type': 'application/json',
 		'Authorization': `App ${process.env.INFOBIP_APP_TOKEN}`,
 	};
-
 	protected _config = {
 		headers: this._headers,
 	};
+
+	private _prefixNum: string = '';
+
+	set prefixNum(value: string) {
+		this._prefixNum = value;
+	}
+
+	private _commonPrefixNum: string = '';
+
+	set commonPrefixNum(value: string) {
+		this._commonPrefixNum = value;
+	}
 
 	get to() {
 		return this._body.to;
 	}
 
 	set to(recipients) {
-		this._body.to = InfobipSmsService._validateNumber(recipients);
+		this._body.to = this._validateNumber(recipients);
 	}
 
 	async send(): Promise<any> {
@@ -29,19 +39,19 @@ export class InfobipSmsService extends BaseSmsService implements SmsInterface {
 		return this.response;
 	}
 
-	private static _validateNumber(mobileNo: string | string[]) {
+	private _validateNumber(mobileNo: string | string[]) {
 		if (Array.isArray(mobileNo)) {
 			const sanitized = [];
 			for (const num of mobileNo) {
-				sanitized.push(InfobipSmsService._cleanNumber(num));
+				sanitized.push(this._cleanNumber(num));
 			}
 			return sanitized;
 		}
-		return InfobipSmsService._cleanNumber(mobileNo);
+		return this._cleanNumber(mobileNo);
 	}
 
-	private static _cleanNumber(mobileNo: string) {
-		if (mobileNo.charAt(0) !== '6' && mobileNo.charAt(0) === '0') {
+	private _cleanNumber(mobileNo: string) {
+		if (mobileNo.charAt(0) !== this._prefixNum && mobileNo.charAt(0) === this._commonPrefixNum) {
 			mobileNo = '6' + mobileNo;
 		}
 		return mobileNo;

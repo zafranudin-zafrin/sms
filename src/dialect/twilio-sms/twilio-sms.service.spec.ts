@@ -1,21 +1,18 @@
 import {Test, TestingModule} from '@nestjs/testing';
-import {HttpModule} from '@nestjs/common';
+import {HttpModule, HttpService} from '@nestjs/common';
 import {TwilioSmsService} from './twilio-sms.service';
+import {InfobipSmsService} from '../infobip-sms/infobip-sms.service';
 
 describe('LoansService', () => {
 	let service: TwilioSmsService;
-
+	let http: HttpService;
 	beforeEach(async () => {
-		const module: TestingModule = await Test.createTestingModule({
-			imports: [
-				HttpModule,
-			],
-			providers: [
-				TwilioSmsService,
-			],
-		}).compile();
+		http = new HttpService();
+		service = new InfobipSmsService(http, {
+			dialect: 'infobip',
+			sender: 'test',
+		});
 
-		service = module.get<TwilioSmsService>(TwilioSmsService);
 	});
 
 	it('should be defined', () => {

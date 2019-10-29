@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { SmsInterface } from '../../interfaces/sms.interface';
-import { BaseSmsService } from '../base-sms.service';
+import {Injectable} from '@nestjs/common';
+import {SmsInterface} from '../../interfaces/sms.interface';
+import {BaseSmsService} from '../base-sms.service';
 
 @Injectable()
 export class InfobipSmsService extends BaseSmsService implements SmsInterface {
@@ -19,7 +19,7 @@ export class InfobipSmsService extends BaseSmsService implements SmsInterface {
 	}
 
 	set to(recipients) {
-		this._body.to = this._validateNumber(recipients);
+		this._body.to = InfobipSmsService._validateNumber(recipients);
 	}
 
 	async send(): Promise<any> {
@@ -29,19 +29,18 @@ export class InfobipSmsService extends BaseSmsService implements SmsInterface {
 		return this.response;
 	}
 
-	private _validateNumber(mobileNo: string | string[]) {
-		let sanitized;
+	private static _validateNumber(mobileNo: string | string[]) {
 		if (Array.isArray(mobileNo)) {
-			sanitized = [];
+			const sanitized = [];
 			for (const num of mobileNo) {
-				sanitized.push(this._cleanNumber(num));
+				sanitized.push(InfobipSmsService._cleanNumber(num));
 			}
+			return sanitized;
 		}
-		sanitized = this._cleanNumber(mobileNo);
-		return sanitized;
+		return InfobipSmsService._cleanNumber(mobileNo);
 	}
 
-	private _cleanNumber(mobileNo) {
+	private static _cleanNumber(mobileNo: string) {
 		if (mobileNo.charAt(0) !== '6' && mobileNo.charAt(0) === '0') {
 			mobileNo = '6' + mobileNo;
 		}

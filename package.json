@@ -48,7 +48,9 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.3.3"
   },
-  "dependencies": {},
+  "dependencies": {
+    "twilio": "^3.35.0"
+  },
   "jest": {
     "moduleFileExtensions": [
       "js",
